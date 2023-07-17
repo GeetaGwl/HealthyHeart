@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: brown; color: white;">
+        <a class="navbar-brand" href="#" style="color: white;">User Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: white;">Welcome, {{ session['username'] }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}" style="color: white;">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+          <!-- Navigation Menu -->
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="height: 400px;">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/user_home">
+                    Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                   Prediction
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    history
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+      
+          <!-- Content Area -->
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Heart Attack Prediction</h1>
+            </div>
+      
+            <div class="row">
+              <div class="col-md-6">
+                <div class="container">
+                   
+                    <form method="POST" action="/predict">
+                      <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="text" class="form-control" id="age" name="age" required placeholder="Your age..">
+                      </div>
+                      <div class="form-group">
+                        <label for="sex">Sex:</label>
+                        <select class="form-control" id="sex" name="sex" required>
+                          <option value="">Choose...</option>
+                          <option value="0">Female</option>
+                          <option value="1">Male</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="cp">Chest Pain Type:</label>
+                        <select class="form-control" id="cp" name="cp" required>
+                          <option value="">Choose...</option>
+                          <option value="0">Typical angina</option>
+                          <option value="1">Atypical angina</option>
+                          <option value="2">Non-anginal pain</option>
+                          <option value="3">Asymptomatic</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="trestbps">Resting Blood Pressure:</label>
+                        <input type="text" class="form-control" id="trestbps" name="trestbps" required placeholder="A number in range [94-200] mmHg">
+                      </div>
+                      <div class="form-group">
+                        <label for="chol">Cholesterol Level:</label>
+                        <input type="text" class="form-control" id="chol" name="chol" placeholder="A number in range [126-564] mg/dl" required >
+                      </div>
+                      <div class="form-group">
+                        <label for="fbs">Fasting Blood Sugar:</label>
+                        <select class="form-control" id="fbs" name="fbs" required>
+                          <option value="">Choose...</option>
+                          <option value="0">Lower than 120 mg/dl</option>
+                          <option value="1">Greater than or equal to 120 mg/dl</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="restecg">Resting Electrocardiographic Results:</label>
+                        <select class="form-control" id="restecg" name="restecg" required>
+                          <option value="">Choose...</option>
+                          <option value="0">Normal</option>
+                          <option value="1">ST-T wave abnormality</option>
+                          <option value="2">Probable or definite left ventricular hypertrophy</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="thalach">Maximum Heart Rate Achieved:</label>
+                        <input type="text" class="form-control" id="thalach" name="thalach" placeholder="A number in range [71-202] bpm" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exang">Exercise Induced Angina:</label>
+                        <select class="form-control" id="exang" name="exang" required>
+                          <option value="">Choose...</option>
+                          <option value="0">No</option>
+                          <option value="1">Yes</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="oldpeak">ST Depression Induced by Exercise Relative to Rest:</label>
+                        <input type="text" class="form-control" id="thalach" name="oldpeak" placeholder="ST depression, typically in [0-6.2]" required>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="slope">slope of the peak exercise ST segment</label>
+        <select id="slope" name="slope" class="form-control" required>
+          <option selected>----select option----</option>
+          <option value="0">Upsloping</option>
+          <option value="1">Flat</option>
+          <option value="2">Downsloping</option>
+        </select>
+        </div>
+        
+ <div class="form-group">
+        <label for="ca">Number of Major vessels</label>
+        <input type="text" id="ca" name="ca" placeholder="Typically in [0-4]" class="form-control">
+        </div>
+                          
+
+<div class="form-group">
+        <label for="thal">Thalassemia</label> 
+        <select id="thal" name="thal" class="form-control">
+          <option selected>----select option----</option>
+          <option value="0">Normal</option>
+          <option value="1">Fixed Defect</option> 
+          <option value="2">Reversible Defect</option>  
+        </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+
+                  
+                  
+              </div>
+              <div class="col-md-6">
+                <!-- Add content for the second column here -->
+              </div>
+            </div>
+      
+          </main>
+        </div>
+      </div>
+      
+</body>
+</html>

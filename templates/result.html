@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    #ans{
+        color:darkred;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 34px;
+        
+
+    }
+    .cl{
+        color:cadetblue;
+    }
+    .cl:hover{
+        color: teal;
+    }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: brown; color: white;">
+        <a class="navbar-brand" href="#" style="color: white;">User Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: white;">Welcome, {{ session['username'] }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}" style="color: white;">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+          <!-- Navigation Menu -->
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="height: 400px;">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/user_home">
+                    Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/pred">
+                   Prediction
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    history
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+      
+          <!-- Content Area -->
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Result</h1>
+            </div>
+      
+            <div class="row">
+              <div class="col-md-6">
+                <div class="container">
+                    {% if prediction==1 %}
+                        <h1 id="ans">Prediction: <span class='danger'>Oops! You have Chances of Heart Disease.</span></h1>
+<br>
+<div class="cl">
+                        <h3>Please Follow The Tips</h3>
+                        <ul>
+                            <li>Avoid smoking and tobacco products.</li>
+                            <li>Maintain a healthy diet that is low in saturated and trans fats.</li>
+                            <li>Engage in regular physical activity.</li>
+                            <li>Maintain a healthy weight.</li>
+                            <li>Manage stress levels.</li>
+                            <li>Control high blood pressure and cholesterol levels.</li>
+                            <li>Limit alcohol consumption.</li>
+                            <li>Take prescribed medications as directed.</li>
+                            <li>Get regular check-ups and screenings.</li>
+                            <li>Avoid or limit exposure to air pollution.</li>
+                          </ul>
+                        </div>
+                    {% elif prediction==0 %}
+                        <h1 id="ans">Prediction: <span class='safe'>Great! You DON'T chances have Heart Disease.</span></h1>
+                        
+                    {% endif %}
+                </div>
+                  
+              </div>
+              <div class="col-md-6">
+                <!-- Add content for the second column here -->
+              </div>
+            </div>
+      
+          </main>
+        </div>
+      </div>
+      
+</body>
+</html>
